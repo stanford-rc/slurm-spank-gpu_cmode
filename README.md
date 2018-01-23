@@ -1,10 +1,10 @@
-## Slurm SPANK GPU Compute Mode plugin
+# Slurm SPANK GPU Compute Mode plugin
 
 The GPU Compute mode [SPANK](https://slurm.schedmd.com/spank.html) plugin for
 [Slurm](https://slurm.schedmd.com/) allows users to choose the compute mode of
 GPUs they submit jobs to.
 
-### Rationale
+## Rationale
 
 NVIDIA GPUs can be set to operate under different compute modes:
 
