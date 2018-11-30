@@ -91,7 +91,7 @@ $ srun --help
   > `--gpu_cmode=exclusive`
 
   ```
-  $ srun --gres gpu:1 --gpu_cmode=exclusive "nvidia-smi --query-gpu=compute_mode --format=csv,noheader"
+  $ srun --gres gpu:1 --gpu_cmode=exclusive nvidia-smi --query-gpu=compute_mode --format=csv,noheader
   Exclusive_Process
   ```
 
@@ -99,14 +99,14 @@ $ srun --help
   > `--gpu_cmode=prohibited`
 
   ```
-  $ srun --gres gpu:1 --gpu_cmode=prohibited "nvidia-smi --query-gpu=compute_mode --format=csv,noheader"
+  $ srun --gres gpu:1 --gpu_cmode=prohibited nvidia-smi --query-gpu=compute_mode --format=csv,noheader
   Prohibited
   ```
 
 ##### Multi-GPU job
 
   ```
-  $ srun --gres gpu:4 --gpu_cmode=shared "nvidia-smi --query-gpu=compute_mode --format=csv,noheader"
+  $ srun --gres gpu:4 --gpu_cmode=shared nvidia-smi --query-gpu=compute_mode --format=csv,noheader
   Default
   Default
   Default
@@ -116,7 +116,7 @@ $ srun --help
 ##### Multi-node job
 
   ```
-  $ srun -l -N 2 --ntasks-per-node=1 --gres gpu:1 --gpu_cmode=shared "nvidia-smi --query-gpu=compute_mode --format=csv,noheader"
+  $ srun -l -N 2 --ntasks-per-node=1 --gres gpu:1 --gpu_cmode=shared nvidia-smi --query-gpu=compute_mode --format=csv,noheader
   1: Default
   0: Default
   ```
