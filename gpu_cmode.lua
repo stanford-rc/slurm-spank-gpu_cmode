@@ -104,7 +104,7 @@ end
 -- SPANK function, called after privileges are temporarily dropped.
 -- needs to run as root, but in the job cgroup context, if any.
 --
-function slurm_spank_user_init(spank)
+function slurm_spank_task_init_privileged(spank)
 
     -- if context is not "remote" or compute mode is not defined, do nothing
     if spank.context ~= "remote" or cmode == nil then
