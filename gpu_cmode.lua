@@ -155,6 +155,20 @@ function slurm_spank_task_exit(spank)
         return SPANK.SUCCESS
     end
 
+    -- get GPU ids from CUDA_VISIBLE_DEVICES
+    device_ids = spank:getenv("CUDA_VISIBLE_DEVICES")
+    if device_ids == nil or device_ids == "" then
+        SPANK.log_error(myname .. ": CUDA_VISIBLE_DEVICES not set.")
+        return SPANK.FAILURE
+    end
+
+    -- check for nvidia-smi
+    nvs_path = exec("which nvidia-smi")
+    if nvs_path:match("nvidia%-smi$") == nil then
+        SPANK.log_error(myname .. ": can't find nvidia-smi in PATH.")
+        return SPANK.FAILURE
+    end
+
     -- reset compute mode on GPUs
     SPANK.log_info(myname .. ": resetting compute mode to default '%s'" ..
                    " on GPU(s): %s\n", default_cmode, device_ids)
