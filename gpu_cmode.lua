@@ -31,8 +31,8 @@ myname = "SPANK:gpu_cmode"
 valid_cmodes = {
     [0]="shared",
  -- [1]="exclusive thread" deprecated
-    [2]="prohibited"
-    [3]="exclusive",
+    [2]="prohibited",
+    [3]="exclusive"
 }
 -- reverse index
 --
