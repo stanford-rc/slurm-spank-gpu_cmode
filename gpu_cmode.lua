@@ -131,7 +131,7 @@ function slurm_spank_task_init_privileged(spank)
     local cmd = nvs_path .. " -c " .. cmodes_index[cmode] ..
                             " -i " .. device_ids
     local ret = 0
-    if _VERSION == 'Lua 5.1' then
+    if _VERSION <= 'Lua 5.1' then
         ret = tonumber(os.execute(cmd))
     else
         _, _, ret = os.execute(cmd)
@@ -180,7 +180,7 @@ function slurm_spank_task_exit(spank)
     local cmd = nvs_path .. " -c " .. cmodes_index[default_cmode] ..
                             " -i " .. device_ids
     local ret = 0
-    if _VERSION == 'Lua 5.1' then
+    if _VERSION <= 'Lua 5.1' then
         ret = tonumber(os.execute(cmd))
     else
         _, _, ret = os.execute(cmd)
