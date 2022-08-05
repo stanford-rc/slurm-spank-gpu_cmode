@@ -130,7 +130,12 @@ function slurm_spank_task_init_privileged(spank)
                    cmode, device_ids)
     local cmd = nvs_path .. " -c " .. cmodes_index[cmode] ..
                             " -i " .. device_ids
-    local ret = tonumber(os.execute(cmd))
+    local ret = 0
+    if _VERSION <= 'Lua 5.1' then
+        ret = tonumber(os.execute(cmd))
+    else
+        _, _, ret = os.execute(cmd)
+    end
     SPANK.log_debug(myname .. ": DEBUG: cmd = %s\n", cmd)
     SPANK.log_debug(myname .. ": DEBUG: ret = %s\n", ret)
 
@@ -174,7 +179,12 @@ function slurm_spank_task_exit(spank)
                    " on GPU(s): %s\n", default_cmode, device_ids)
     local cmd = nvs_path .. " -c " .. cmodes_index[default_cmode] ..
                             " -i " .. device_ids
-    local ret = tonumber(os.execute(cmd))
+    local ret = 0
+    if _VERSION <= 'Lua 5.1' then
+        ret = tonumber(os.execute(cmd))
+    else
+        _, _, ret = os.execute(cmd)
+    end
     SPANK.log_debug(myname .. ": DEBUG: cmd = %s\n", cmd)
     SPANK.log_debug(myname .. ": DEBUG: ret = %s\n", ret)
 
