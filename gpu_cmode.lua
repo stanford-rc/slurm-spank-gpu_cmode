@@ -118,6 +118,13 @@ function slurm_spank_task_init_privileged(spank)
         return SPANK.FAILURE
     end
 
+    -- Setting compute mode is not supported on MIG-enabled devices
+    if device_ids:find("MIG-") then
+        SPANK.log_user(myname .. ": ignoring compute mode setting on " ..
+                                 "MIG-enabled device")
+        return SPANK.SUCCESS
+    end
+
     -- check for nvidia-smi
     nvs_path = exec("which nvidia-smi")
     if nvs_path:match("nvidia%-smi$") == nil then
@@ -165,6 +172,13 @@ function slurm_spank_task_exit(spank)
     if device_ids == nil or device_ids == "" then
         SPANK.log_error(myname .. ": CUDA_VISIBLE_DEVICES not set.")
         return SPANK.FAILURE
+    end
+
+    -- Setting compute mode is not supported on MIG-enabled devices
+    if device_ids:find("MIG-") then
+        SPANK.log_user(myname .. ": ignoring compute mode setting on " ..
+                                 "MIG-enabled device")
+        return SPANK.SUCCESS
     end
 
     -- check for nvidia-smi
